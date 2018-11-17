@@ -1,0 +1,10 @@
+//몽고디비
+https://www.mongodb.com/download-center/community?jmp=homepage
+https://blog.hanumoka.net/2018/10/18/mongodb-20181018-mongodb-install-at-windows/
+
+//nodejs
+https://nodejs.org/ko/
+
+//git
+https://github.com/
+https://github.com/tkdlzh2044/wtf_tutorial

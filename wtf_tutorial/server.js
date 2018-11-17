@@ -1,27 +1,43 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var session = require('express-session');
-var fs = require("fs")
+var express 	= require('express');
+var app 		= express();
+var bodyParser 	= require('body-parser');
+var session 	= require('express-session');
+var fs 			= require("fs")
+var mongoose    = require('mongoose');
 
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
+app.set('views'			, __dirname);
+app.set('view engine'	, 'ejs');
+
 app.engine('html', require('ejs').renderFile);
 
+app.use(express.static('public')	);
 
-var server = app.listen(3000, function(){
- console.log("Express server has started on port 3000")
+app.use(bodyParser.json()			);
+app.use(bodyParser.urlencoded()		);
+app.use(
+	session({
+		secret: '@#@$MYSIGN#@$#$',
+ 		resave: false,
+ 		saveUninitialized: true
+	})
+);
+
+path = new Map();
+
+//path["controller"]  = "controller/";
+path["main" ]	= "biz/main/";
+path["admin" ]	= "biz/admin/";
+
+//server
+var port = 8080;
+var server = app.listen(port, function(){
+	console.log('Express server potr = ' + port);
 });
 
-app.use(express.static('public'));
+// db 접속 설정
+require('./db.js').connect();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-app.use(session({
- secret: '@#@$MYSIGN#@$#$',
- resave: false,
- saveUninitialized: true
-}));
+// router
+var router = require('./router/mainRouter')(app, fs);
 
-
-var router = require('./router/main')(app, fs);
+module.exports = app;

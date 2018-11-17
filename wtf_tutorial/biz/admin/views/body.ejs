@@ -1,0 +1,15 @@
+<h1>user</h1>
+<form action="/admin" method="post">
+	<input type="text" name="userId"><br>
+	<input type="text" name="pw"><br>
+	<button type="submit">add user</button>
+	<ul>
+    <% for(var i = 0; i < users.length; i++){ %>
+        <li>
+        	<%= i %> &nbsp
+            <%= users[i].id%>
+        </li>
+    <% } %>
+	</ul>
+</form>
+
