@@ -1,0 +1,27 @@
+<html>
+
+<head>
+    <% include ../../main/views/header.ejs %>
+</head>
+
+<body>
+    <% include ../../main/views/topMenu.ejs %>
+    
+<h1>Chatting Room</h1>
+<p> <%= nickname %>님 반갑습니다.</p>
+<form method="post" action="/chat/makeroom">
+    <label>방제</label>
+    <input type="text" name="roomname" /><br />
+    <input type="submit" value="방만들기" />
+</form>
+<ul></ul>
+
+
+<% for(var room in roomlist ){ %>
+    <li><a href="/join/<%=room%>">입장하기</a></li>
+<% } %>
+    
+    <% include ../../main/views/footer.ejs %>
+</body>
+
+</html>

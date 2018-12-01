@@ -1,11 +1,18 @@
 {
   "name": "wtf_tutorial",
   "version": "1.0.0",
+  "main": "./server.js",
+  "scripts": {
+    "start": "node server.js",
+    "debug": "node --inspect ./server.js"
+  },
   "dependencies": {
     "body-parser": "~1.14.2",
     "ejs": "~2.4.1",
     "express": "~4.13.1",
     "express-session": "~1.13.0",
-    "mongoose": "^5.3.12"
+    "mongoose": "^5.3.12",
+    "path": "^0.12.7",
+    "socket.io": "^2.1.1"
   }
 }

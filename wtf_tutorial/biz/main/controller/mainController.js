@@ -1,21 +1,19 @@
-exports.list = function(req, res){
-  
-    res.render( path["main"] + 'views/index', {
+var path = require('path');
+
+exports.list = (req, res) => {
+    res.render( path.join(__rootPath, 'biz', 'main', 'views', 'index'), {
         title: "MY HOMEPAGE",
         length: 5
     });
-     
-
-  //}); 
 }; // end list
 
-exports.create = function(req, res){
+exports.create = (req, res) => {
 
   res.redirect('/');
   res.end();
 }; // end create
 
-exports.update = function(req, res){
+exports.update = (req, res) =>{
 
   res.redirect('/');
   res.end();
