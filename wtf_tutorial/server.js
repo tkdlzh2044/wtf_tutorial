@@ -14,6 +14,10 @@ app.engine('html', require('ejs').renderFile);
 
 app.use(express.static('public')	);
 
+app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
+app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+
 app.use(bodyParser.json()			);
 app.use(bodyParser.urlencoded()		);
 app.use(
@@ -31,9 +35,9 @@ global.__rootPath = path.join(__dirname, '/');
 require('./db.js').connect();
 
 // router
-var mainRouter 	= require(path.join(__dirname , 'router', 'mainRouter'));
-var adminRouter = require(path.join(__dirname , 'router', 'adminRouter'));
-var chatRouter  = require(path.join(__dirname , 'router', 'chatRouter'));
+var mainRouter 	= require(path.join(__dirname , 'biz', 'main', 'mainRouter'));
+var adminRouter = require(path.join(__dirname , 'biz', 'admin', 'adminRouter'));
+var chatRouter  = require(path.join(__dirname , 'biz', 'chat', 'chatRouter'));
 
 app.use('/' 		, mainRouter);
 app.use('/admin' 	, adminRouter);

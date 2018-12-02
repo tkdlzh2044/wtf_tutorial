@@ -1,11 +1,67 @@
-<h1>user</h1>
-<form action="/admin" method="post">
+<script>
+    
+//$.fn.serializeObject = function() { 
+//    var obj = null;
+//    try { 
+//        if(this[0].tagName && this[0].tagName.toUpperCase() == "FORM" ) {
+//            var arr = this.serializeArray(); 
+//            if(arr){ 
+//                obj = {};
+//                jQuery.each(arr, function() { 
+//                    obj[this.name] = this.value;
+//                }); 
+//            }} 
+//    }
+//    catch(e) { alert(e.message); }
+//    finally {} 
+//    return obj; 
+//}
+
+$(document).ready(function(){    
+    $('#ajaxTest').click(function(e){     
+        $.ajax({
+            type: "POST",
+            url: "/admin/ajaxTest",
+            async: true,
+            //data: {pw : $('[name="pw"]')[0].value},
+            data: $('#frm').serialize(),
+            success: function(result,status,xhr){
+                $("#resultDiv").html(result);
+            },
+            error: function(xhr, status, er){}
+        });
+        e.preventDefault();         
+    });
+    
+    $('li').click( function(e, ui){
+        var delButton = '<button onClick="del()" type="button" id="del">삭제</buttoon>' ;
+        var updButton = '<button onClick="upd()" type="button" id="upd">수정</buttoon>' ;
+        
+        $("#selectId").html( $(this).attr('id')); 
+        $("#addBtn").html( updButton + delButton); 
+    });
+});
+    
+function del(){
+    console.log();
+    $("#frm").attr('action','/admin/del/' + $('#selectId').text());
+    $("#frm").submit();
+}
+
+function upd(){
+
+}
+</script>
+<h1 id="selectId"></h1><span id='addBtn'></span>
+<form id="frm" action="/admin" method="post">
 	<input type="text" name="userId"><br>
 	<input type="text" name="pw"><br>
-	<button type="submit">add user</button>
+	<button hidden type="submit">add user</button>
+    <h2 id="ajaxTest" href="#" >ajaxTest</h2>
+    <div id="resultDiv"></div>
 	<ul>
     <% for(var i = 0; i < users.length; i++){ %>
-        <li>
+        <li id='<%= users[i].id%>'>
         	<%= i %> &nbsp
             <%= users[i].id%>
         </li>

@@ -12,5 +12,4 @@ router.post('/enter', chatController.postEndter);
 
 router.post('/makeroom', chatController.makeroom);
 
-
 module.exports = router;

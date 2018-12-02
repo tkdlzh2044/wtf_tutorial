@@ -1,12 +1,17 @@
 var socketio    = require('socket.io');
 var path        = require('path');
 
-var chatController = require(path.join(__rootPath, 'biz', 'chat', 'eventHandler', 'mainHandler'));
+var eventHandler = require(path.join(__rootPath, 'biz', 'chat', 'eventHandler', 'mainHandler'));
 //var chat = require('./chat');
 var socketServer = (app) => {
 	var io = socketio.listen(app);//소켓서버실행
     console.log('소캣 온');
-	io.sockets.on('connection', chatController.onConnectClient );
+	//io.sockets.on('connection', chatController.onConnectClient );
+    io.sockets.on('connection', (socket) => {
+        eventHandler.onConnectClient(socket,io);
+    });
+                  
+
         //=> {
 		
         //console.log('클라이언트 접속!!!!!');

@@ -8,4 +8,8 @@ router.get('/', adminController.list);
 //app.get('/admin/:id', adminController.userDetail);
 router.post('/', adminController.regUser);
 
+router.post('/del/:id', adminController.delUser);
+
+router.post('/ajaxTest', adminController.ajaxTest);
+
 module.exports = router;
